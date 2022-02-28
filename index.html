@@ -1,0 +1,224 @@
+<html class="design no-flash audiopreload">
+
+<head>
+  <meta charset="utf-8">
+  <title>READ 180 Universal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <link rel="stylesheet" type="text/css" href="/extern/style.css">
+</head>
+
+<body class="production">
+    
+  <div class="loading modal" ng-class="{'modal--active': activityTransition.loading}">
+    <div class="modal__bg">
+      <div class="loading__frame">
+        <div class="loading__cell"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="content" r180u-loading="" ng-class="[currentActivity.activityclass, contentStyleClass]" ui-view="" ng-controller="activityCtrl" class="activity-page--success_screen activity-theme--explore">
+    <header class="header header--explore" ng-class="headerThemeClass" absolute-on-keyboard="">
+      <div class="container">
+        <div class="header__bg"></div>
+        <div class="header__ui">
+          <a class="header__icon icon icon--zone-menu" ng-click="onZoneMenuClick($event)" r180u-tool-tip="Select to exit and go to the Zone Menu." tabindex="0">Zone Menu</a>
+          <span class="header__crumb is-unselectable" ng-if="headerTheme">Explore Zone</span><!-- end ngIf: headerTheme -->
+          <span class="header__crumb header__crumb--separator icon icon--go-on is-unselectable" ng-if="headerTheme"></span>
+          <span class="header__crumb is-unselectable">Segment Completion</span>
+          <div class="header__utility">
+            <a class="header__crumb" href="" tabindex="-1"></a>
+            <a class="header__icon icon icon--help" ng-click="onHelpClick()" r180u-tool-tip="Get help on what to do next." href="" tabindex="0">Help</a>
+            <a class="header__icon icon icon--close-software is-clickable" ng-click="onLogoutClick()" r180u-tool-tip="Sign out of the Student Application" href="" tabindex="0">Close Software</a>
+          </div>
+        </div>
+      </div>
+      <div class="modal" ng-class="{'modal--active': show}" ng-click="hideModal(false)" tab-trap="" show="showConfirmZoneMenu" modifier-class="panel--generic" show-close-button="false" allow-outside-close="false" role="button" tabindex="0">
+        <div class="modal__bg container">
+          <div class="activity__frame">
+            <div class="activity__cell">
+              <div class="panel panel--generic" ng-class="modifierClass">
+                <div class="panel__container">
+                  <div class="panel__bg">
+                    <div class="panel__text" ng-transclude="">
+                      <div class="panel__icon"><img class="panel--generic__image" src="assets/logo.png"></div>
+                      <header class="panel__header"></header>
+                      <div class="self-rate__offer">Are you sure you want to exit and go to Zone Menu?</div>
+                      <footer class="panel__footer">
+                        <button class="cta cta--tertiary" ng-click="doSelectionZoneMenu(false)" r180u-tool-tip="Select to answer &quot;No&quot;." tabindex="0">
+                          <span class="cta__border"><span class="cta__bg"><span class="cta__text">No</span>
+                              <span class="cta__icon icon icon--incorrect"></span></span></span></button> <button class="cta cta--rz" ng-disabled="isYesButtonDisabled" ng-click="doSelectionZoneMenu(true, $event)" ng-dblclick="onDoubleClick()" hm-doubletap="onDoubleClick()" r180u-tool-tip="Select to answer &quot;Yes&quot;." tabindex="0" aria-disabled="false" style="touch-action: manipulation; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="cta__border"><span class="cta__bg"><span class="cta__text">Yes</span><span class="cta__icon icon icon--correct"></span></span></span></button>
+                      </footer>
+                    </div>
+                  </div>
+                  <div class="panel__shadow panel__shadow--left-top"></div>
+                  <div class="panel__shadow panel__shadow--right-top"></div>
+                  <div class="panel__shadow panel__shadow--left-bottom"></div>
+                  <div class="panel__shadow panel__shadow--right-bottom"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" ng-class="{'modal--active': show}" ng-click="hideModal(false)" tab-trap="" show="showConfirmLogout" modifier-class="panel--generic" show-close-button="false" allow-outside-close="false" role="button" tabindex="0">
+        <div class="modal__bg container">
+          <div class="activity__frame">
+            <div class="activity__cell">
+              <div class="panel panel--generic" ng-class="modifierClass">
+                <div class="panel__container">
+                  <div class="panel__bg">
+                    <div class="panel__text" ng-transclude="">
+                      <div class="panel__icon"><img class="panel--generic__image" src="assets/logo.png"></div>
+                      <header class="panel__header"></header>
+                      <div class="self-rate__offer">Are you sure you want to Sign Out?</div>
+                      <footer class="panel__footer"><button class="cta cta--tertiary" ng-click="doSelectionLogout(false)" r180u-tool-tip="Select if you're not ready to sign out." tabindex="0"><span class="cta__border"><span class="cta__bg"><span class="cta__text">No</span><span class="cta__icon icon icon--incorrect"></span></span></span></button> <button class="cta cta--rz" ng-disabled="isYesButtonDisabled" ng-click="doSelectionLogout(true, $event)" ng-dblclick="onDoubleClick()" hm-doubletap="onDoubleClick()" r180u-tool-tip="Select to sign out." tabindex="0" aria-disabled="false" style="touch-action: manipulation; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span class="cta__border"><span class="cta__bg"><span class="cta__text">Yes</span><span class="cta__icon icon icon--correct"></span></span></span></button></footer>
+                    </div>
+                  </div>
+                  <div class="panel__shadow panel__shadow--left-top"></div>
+                  <div class="panel__shadow panel__shadow--right-top"></div>
+                  <div class="panel__shadow panel__shadow--left-bottom"></div>
+                  <div class="panel__shadow panel__shadow--right-bottom"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <ui-view class="activity-content" ng-class="{'is-closed-captioning': enableCaptioning}">
+      <div id="segmentCompletion">
+        <div class="celebration" ui-view="">
+          <div class="celebration__step celebration__step--2 activity__frame is-off-stage" ng-class="{'is-on-stage': state.zoneDisplay, 'is-off-stage': state.zoneOffstage}">
+            <div class="activity__cell">
+              <div class="celebration__zone-buttons celebration__zone-buttons-count--6" ng-class="'celebration__zone-buttons-count--' + state.buttonCount">
+                <div class="zone-menu__item zone-menu-button zone-menu-button--explore-zone zone-menu-button--unavailable zone-menu-button--complete" tabindex="-1" state="{&quot;current&quot;:3,&quot;max&quot;:3,&quot;completedOptional&quot;:false,&quot;progress&quot;:100,&quot;available&quot;:false,&quot;showUnlockAnim&quot;:false}" name="Explore Zone" slug="explore_zone" delay="ezDelay" animate="true">
+                  <div class="zone-menu__button zone-menu-button__button" ng-attr-tabindex="{{tabindex}}" tabindex="-1"><span class="zone-menu__icon zone-menu-button__icon icon icon--explore-zone"></span> <svg class="zone-menu-button__progress" width="110" height="110">
+                      <circle class="progress" cx="55" cy="55" r="44" fill="none" stroke-width="5" stroke-dasharray="276.46015351590194, 2000" transform="rotate(90, 55, 55)"></circle>
+                      <circle class="thumb" opacity="1" cx="55" cy="100" r="8" stroke="white" stroke-width="3" transform="rotate(360, 55, 55)"></circle>
+                    </svg>
+                    <div class="zone-menu-button__progress-icon zone-menu-button__complete-icon icon icon--correct" ng-if="progress === 'complete'"></div>
+                  </div>
+                  <div class="zone-menu__button-title zone-menu-button__title content content--sans-serif">
+                    <h3 class="c-text--pale-gray">Explore</h3>
+                  </div>
+                </div>
+                <div class="zone-menu__item zone-menu-button zone-menu-button--reading-zone zone-menu-button--unavailable zone-menu-button--complete" tabindex="-1" state="{&quot;current&quot;:11,&quot;max&quot;:11,&quot;completedOptional&quot;:false,&quot;progress&quot;:100,&quot;available&quot;:false,&quot;showUnlockAnim&quot;:false}" name="Reading Zone" slug="reading_zone" delay="rzDelay" animate="true">
+                  <div class="zone-menu__button zone-menu-button__button" ng-attr-tabindex="{{tabindex}}" tabindex="-1"><span class="zone-menu__icon zone-menu-button__icon icon icon--reading-zone"></span> <svg class="zone-menu-button__progress" width="110" height="110">
+                      <circle class="progress" cx="55" cy="55" r="44" fill="none" stroke-width="5" stroke-dasharray="276.46015351590194, 2000" transform="rotate(90, 55, 55)"></circle>
+                      <circle class="thumb" opacity="1" cx="55" cy="100" r="8" stroke="white" stroke-width="3" transform="rotate(360, 55, 55)"></circle>
+                    </svg>
+                    <div class="zone-menu-button__progress-icon zone-menu-button__complete-icon icon icon--correct" ng-if="progress === 'complete'"></div>
+                  </div>
+                  <div class="zone-menu__button-title zone-menu-button__title content content--sans-serif">
+                    <h3 class="c-text--pale-gray">Reading</h3>
+                  </div>
+                </div>
+                <div class="zone-menu__item zone-menu-button zone-menu-button--language-zone zone-menu-button--unavailable zone-menu-button--complete" tabindex="-1" state="{&quot;current&quot;:6,&quot;max&quot;:6,&quot;completedOptional&quot;:false,&quot;progress&quot;:100,&quot;available&quot;:false,&quot;showUnlockAnim&quot;:false}" name="Language Zone" slug="language_zone" delay="lzDelay" animate="true">
+                  <div class="zone-menu__button zone-menu-button__button" ng-attr-tabindex="{{tabindex}}" tabindex="-1"><span class="zone-menu__icon zone-menu-button__icon icon icon--language-zone"></span> <svg class="zone-menu-button__progress" width="110" height="110">
+                      <circle class="progress" cx="55" cy="55" r="44" fill="none" stroke-width="5" stroke-dasharray="276.46015351590194, 2000" transform="rotate(90, 55, 55)"></circle>
+                      <circle class="thumb" opacity="1" cx="55" cy="100" r="8" stroke="white" stroke-width="3" transform="rotate(360, 55, 55)"></circle>
+                    </svg>
+                    <div class="zone-menu-button__progress-icon zone-menu-button__complete-icon icon icon--correct" ng-if="progress === 'complete'"></div>
+                  </div>
+                  <div class="zone-menu__button-title zone-menu-button__title content content--sans-serif">
+                    <h3 class="c-text--pale-gray">Language</h3>
+                  </div>
+                </div>
+                <div class="zone-menu__item zone-menu-button zone-menu-button--fluency-zone zone-menu-button--unavailable zone-menu-button--complete" tabindex="-1" state="{&quot;current&quot;:6,&quot;max&quot;:6,&quot;completedOptional&quot;:false,&quot;progress&quot;:100,&quot;available&quot;:false,&quot;showUnlockAnim&quot;:false}" name="Fluency Zone" slug="fluency_zone" delay="fzDelay" animate="true">
+                  <div class="zone-menu__button zone-menu-button__button" ng-attr-tabindex="{{tabindex}}" tabindex="-1"><span class="zone-menu__icon zone-menu-button__icon icon icon--fluency-zone"></span> <svg class="zone-menu-button__progress" width="110" height="110">
+                      <circle class="progress" cx="55" cy="55" r="44" fill="none" stroke-width="5" stroke-dasharray="276.46015351590194, 2000" transform="rotate(90, 55, 55)"></circle>
+                      <circle class="thumb" opacity="1" cx="55" cy="100" r="8" stroke="white" stroke-width="3" transform="rotate(360, 55, 55)"></circle>
+                    </svg>
+                    <div class="zone-menu-button__progress-icon zone-menu-button__complete-icon icon icon--correct" ng-if="progress === 'complete'"></div>
+                  </div>
+                  <div class="zone-menu__button-title zone-menu-button__title content content--sans-serif">
+                    <h3 class="c-text--pale-gray">Fluency</h3>
+                  </div>
+                </div>
+                <div class="zone-menu__item zone-menu-button zone-menu-button--writing-zone zone-menu-button--unavailable zone-menu-button--complete" tabindex="-1" ng-if="activityData.isWritingEnabled" state="{&quot;current&quot;:5,&quot;max&quot;:5,&quot;completedOptional&quot;:false,&quot;progress&quot;:100,&quot;available&quot;:false,&quot;showUnlockAnim&quot;:false}" name="Writing Zone" slug="writing_zone" delay="wzDelay" animate="true">
+                  <div class="zone-menu__button zone-menu-button__button" ng-attr-tabindex="{{tabindex}}" tabindex="-1"><span class="zone-menu__icon zone-menu-button__icon icon icon--writing-zone"></span> <svg class="zone-menu-button__progress" width="110" height="110">
+                      <circle class="progress" cx="55" cy="55" r="44" fill="none" stroke-width="5" stroke-dasharray="276.46015351590194, 2000" transform="rotate(90, 55, 55)"></circle>
+                      <circle class="thumb" opacity="1" cx="55" cy="100" r="8" stroke="white" stroke-width="3" transform="rotate(360, 55, 55)"></circle>
+                    </svg>
+                    <div class="zone-menu-button__progress-icon zone-menu-button__complete-icon icon icon--correct" ng-if="progress === 'complete'"></div>
+                  </div>
+                  <div class="zone-menu__button-title zone-menu-button__title content content--sans-serif">
+                    <h3 class="c-text--pale-gray">Writing</h3>
+                  </div>
+                </div>
+                <div class="zone-menu__item zone-menu-button zone-menu-button--success-zone zone-menu-button--complete" tabindex="-1" state="{&quot;current&quot;:3,&quot;max&quot;:3,&quot;completedOptional&quot;:false,&quot;progress&quot;:100,&quot;available&quot;:true,&quot;showUnlockAnim&quot;:false}" name="Success Zone" slug="success_zone" delay="szDelay" animate="true">
+                  <div class="zone-menu__button zone-menu-button__button" ng-attr-tabindex="{{tabindex}}" tabindex="0"><span class="zone-menu__icon zone-menu-button__icon icon icon--success-zone"></span> <svg class="zone-menu-button__progress" width="110" height="110">
+                      <circle class="progress" cx="55" cy="55" r="44" fill="none" stroke-width="5" stroke-dasharray="276.46015351590194, 2000" transform="rotate(90, 55, 55)"></circle>
+                      <circle class="thumb" opacity="1" cx="55" cy="100" r="8" stroke="white" stroke-width="3" transform="rotate(360, 55, 55)"></circle>
+                    </svg>
+                    <div class="zone-menu-button__progress-icon zone-menu-button__complete-icon icon icon--correct" ng-if="progress === 'complete'"></div>
+                  </div>
+                  <div class="zone-menu__button-title zone-menu-button__title content content--sans-serif">
+                    <h3 class="c-text--pale-gray">Success</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="celebration__step celebration__step--3 activity__frame is-on-stage" ng-class="{'is-on-stage': state.segmentDisplay}">
+            <div class="activity__cell">
+              <div class="celeb-circle">
+                <div class="celeb-circle__congrats">Congratulations!</div>
+                <div class="celeb-circle__image-wrap">
+                  <r180u-image image-id="feature_c04"><img onmousedown="event.preventDefault &amp;&amp; event.preventDefault()" src="assets/thatimage.jpg" width="700rem"></r180u-image>
+                </div><svg class="celeb-circle__bar">
+                  <circle class="celeb-circle__circle" cx="220" cy="220" r="205"></circle>
+                </svg>
+                <div class="celeb-circle__star"></div>
+                <div class="celeb-circle__shine-wrap">
+                  <div class="celeb-circle__shine"></div>
+                </div>
+                <div class="celeb-circle__text">Segment Completed!</div>
+              </div>
+              <div class="activity__support">
+                <div class="container"><button class="activity__cta cta cta--tertiary cta--small cta--center cta--right" ng-click="goon()" ng-disabled="!state.goonEnabled" r180u-tool-tip="Select &quot;Go On&quot; to continue." tabindex="0" aria-disabled="false"><span class="cta__border"><span class="cta__bg"><span class="cta__text">Go On</span><span class="cta__icon icon icon--go-on"></span></span></span></button>
+                  <div class="activity__line"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui-view>
+  </div>
+
+  <error-modal width="100" height="100">
+    <div class="modal" ng-class="{'modal--active': show}" ng-click="hideModal(false)" tab-trap="" show="isVisible" modifier-class="panel--generic" show-close-button="false" allow-outside-close="false" role="button" tabindex="0">
+      <div class="modal__bg container">
+        <div class="activity__frame">
+          <div class="activity__cell">
+            <div class="panel panel--generic" ng-class="modifierClass">
+              <div class="panel__container">
+                <div class="panel__bg">
+                  <div class="panel__text" ng-transclude="">
+                  </div>
+                </div>
+                <div class="panel__shadow panel__shadow--left-top"></div>
+                <div class="panel__shadow panel__shadow--right-top"></div>
+                <div class="panel__shadow panel__shadow--left-bottom"></div>
+                <div class="panel__shadow panel__shadow--right-bottom"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </error-modal>
+  <link rel="stylesheet" type="text/html" href="/extern/scriptn.js">
+  <!-- DNEO ?? I Hate ScriptnPOW -->
+  <link rel="stylesheet" href="https://h100007752.education.scholastic.com/r180u/assets/design.min.81296654.css">
+  
+<div style="display:none;">
+    </body>
+</div>
+
+</html>
+
+<!-- This Website (Read 180) was copied on january 12th 2020 For The Soul Reason
+    To Copy And Fake The Usage Of Work By Faking A Completed Segment.  -->
