@@ -11,7 +11,9 @@ It's very usefull for a lot of things (but mainly to get out of working)
 
 
 <h3> Screenshot of website </h3>
-<img src="https://scholastic.cf/assets/showcase.png">
+
+<!-- @Copyright IWISO (Image Content Owned By wiso) -->
+<img src="https://scholastic.cf/assets/showcase.png"/>
 
 
 
